@@ -7,12 +7,12 @@ const HomePage = function App() {
   return (
     <div className="max-w-[28.75rem] w-[100%] h-[56.25rem] mx-[auto] lg:max-w-[87.5rem] lg:w-[100%]">
       <div className="max-w-[28.75rem] w-[100%] mx-[auto] items-center justify-center md:max-w-[87.5rem]md:w-[100%] lg:max-w-[87.5rem] lg:w-[100%]">
-        <div className="flex flex-col gap-[0.625rem] items-center justify-center  md:flex-row md:mt-[3rem] lg:gap-[0.625rem] xl:mt-[3rem]">
-          <div className="mx-[8.19rem] mt-[1.5rem] lg:mt-[3rem] lg:pr-[15rem] xl:ml-[-10rem]">
-            <h2 className="font-[Inter] text-[#18214D] text-[1.75rem] font-[700] tracking-[-0.0375rem]lg:pl-[-5rem]">CommitViewer</h2>
+        <div className="flex flex-col gap-[0.625rem] items-center justify-center  md:flex-row md:mt-[3rem] lg:gap-[0.625rem] xl:mt-[2rem]">
+          <div className="mx-[8.19rem] mt-[1.5rem] lg:mt-[2rem] lg:pr-[15rem] xl:ml-[-10rem]">
+            <h2 className="font-[Inter] text-[#18214D] text-[1.75rem] font-[700] tracking-[-0.0375rem]lg:pl-[3rem]">CommitViewer</h2>
           </div>
           <div className="max-w-[10.06rem] w-[100%] mt-[1rem] mx-[9.31rem] md:ml-[10rem] xl:pl-[10rem]">
-            <ul className=" text-[1.25rem] font-[Inter] font-[400] text-[#18214D] tracking-[-0.025rem] leading-[1.75rem] text-right flex flex-row gap-[2] items-center justify-center  md:flex-row md:gap-9 xl:ml-[9rem] xl:flex xl:between">
+            <ul className=" text-[1.25rem] font-[Inter] font-[400] text-[#18214D] tracking-[-0.025rem] leading-[1.75rem] text-right flex flex-row gap-4 items-center justify-center  md:flex-row md:gap-9 xl:ml-[9rem] xl:flex xl:between">
               <li className="xl:pl-[3rem]">
                 <a href="#">About</a>
               </li>
@@ -39,7 +39,7 @@ const HomePage = function App() {
       </div>
 
       <div className="mx-[2rem] md:mx-[auto] md:ml-[2rem]">
-        <div className=" flex flex-col items-ceneter justify-center gap-5 lg:flex-row  lg:max-w-[87.5rem] lg:w-[100%] lg:gap-2rem" >
+        <div className=" flex flex-col items-center justify-center gap-0.5 lg:flex-row  lg:max-w-[87.5rem] lg:w-[100%] lg:gap-2rem" >
           <div className="mt-[4rem] max-w-[24.75rem] w-[100%] lg:max-w-[43.375rem] lg:w-[100%]">
             <div className="absolute top-[15] mt-[1.1rem] ml-[1rem]">
               <SEARCH />
