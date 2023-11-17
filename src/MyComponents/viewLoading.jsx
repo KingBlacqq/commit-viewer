@@ -7,7 +7,7 @@ const ViewLoading = () => {
     <div className="mx-[auto] md:max-w-[768px]md:w-[100%]">
       <div className=" h-[5.125rem] bg-[#DFE4EA] mx-[auto] md:bg-[#EFF2F6] md:h-[10rem] xl:h-[8.125rem]">
         <div className="md:max-w-[87rem] md:w-[100%] md:flex md:flex-col lg:flex-row lg:pt-[3rem] xl:gap-0 xl:ml-[-12rem]">
-          <h1 className="font-[Inter] font-[700] text-[#18214D] text-[1.75rem] tracking-[-0.0375rem] text-center pt-[1.5rem] lg:ml-[3rem] xl:pl-[9.06rem] xl:mx-[auto] xl:mt-[-2rem] xl:pl-[25rem]">
+          <h1 className="font-[Inter] font-[700] text-[#18214D] text-[1.75rem] tracking-[-0.0375rem] text-center pt-[1.5rem] lg:ml-[3rem]  xl:mx-[auto] xl:mt-[-2rem] xl:pl-[25rem]">
             CommitViewer
           </h1>
 
