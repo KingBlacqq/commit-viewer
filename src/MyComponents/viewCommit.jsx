@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Ellipse, SEARCH } from "../assets/IMAGES/img";
 
-const viewCommit = () => {
+const ViewCommit = () => {
   return (
     <div className=" max-w-[87.5rem] w-[100%] h-[48rem] bg-[#FFF] flex flex-col">
       <div className=" bg-[#EFF2F6] h-[8rem] w-[78.95rem]">
@@ -10,7 +10,7 @@ const viewCommit = () => {
           <h1 className="font-[Inter] font-[700] text-[#18214D] text-[ 1.75rem] tracking-[ -0.0375rem] mt-[3rem] mr-[2rem]">
             CommitViewer
           </h1>
-
+       
           <div className="flex  items-center max-w-[50.625rem] w-[50.625rem] gap-[0.5rem] mt-[2.25rem] pb-[3rem]">
             <div className="ml-[-1rem] absolute pl-[2rem]">
               <SEARCH />
@@ -29,7 +29,7 @@ const viewCommit = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center mt-[2rem]">
+      <div className=" flex flex-col items-center justify-center mt-[2rem]">
         <h1 className="text-[#29335C] font-[Inter] font-[600] text-[2.25rem] text-[center]">
           microsoft/vscode
         </h1>
@@ -106,4 +106,4 @@ const viewCommit = () => {
   );
 };
 
-export default viewCommit;
+export default ViewCommit;

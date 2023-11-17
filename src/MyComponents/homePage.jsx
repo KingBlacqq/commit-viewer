@@ -3,17 +3,17 @@ import ReactDOM from "react-dom/client";
 import { SEARCH } from "../assets/IMAGES/img";
 import { Link } from "react-router-dom";
 
-const homePage = function App() {
+const HomePage = function App() {
   return (
-    <div className="xl:h-[48rem]">
-      <div className="xl:bg-[#FFF] xl:max-w-[80.75rem] xl:w-[100%] ">
-        <div className="xl:flex xl:flex-row xl:mt-[3rem] ml-[10.06rem] items-center justify-items-center">
-          <div className="text-[#18214D] mr-[44.94rem] font-[Inter] font-[700] text-[1.75rem] leading-normal tracking-[-0.0375rem]">
-            <h2 className="">CommitViewer</h2>
+    <div className="max-w-[28.75rem] w-[100%] h-[56.25rem] mx-[auto] lg:max-w-[87.5rem] lg:w-[100%]">
+      <div className="max-w-[28.75rem] w-[100%] mx-[auto] items-center justify-center md:max-w-[87.5rem]md:w-[100%] lg:max-w-[87.5rem] lg:w-[100%]">
+        <div className="flex flex-col gap-[0.625rem] items-center justify-center  md:flex-row md:mt-[3rem] lg:gap-[0.625rem] xl:mt-[3rem]">
+          <div className="mx-[8.19rem] mt-[1.5rem] lg:mt-[3rem] lg:pr-[15rem] xl:ml-[-10rem]">
+            <h2 className="font-[Inter] text-[#18214D] text-[1.75rem] font-[700] tracking-[-0.0375rem]lg:pl-[-5rem]">CommitViewer</h2>
           </div>
-          <div className="flex w-[12.0625rem] h-[1.75rem] ml-[-9.06rem]  ">
-            <ul className="flex gap-[4rem] text-[1.25rem] font-[Inter] items-start text-[#18214D] font-[400] tracking-[-0.025rem]">
-              <li>
+          <div className="max-w-[10.06rem] w-[100%] mt-[1rem] mx-[9.31rem] md:ml-[10rem] xl:pl-[10rem]">
+            <ul className=" text-[1.25rem] font-[Inter] font-[400] text-[#18214D] tracking-[-0.025rem] leading-[1.75rem] text-right flex flex-row gap-[2] items-center justify-center  md:flex-row md:gap-9 xl:ml-[9rem] xl:flex xl:between">
+              <li className="xl:pl-[3rem]">
                 <a href="#">About</a>
               </li>
               <li>
@@ -24,57 +24,59 @@ const homePage = function App() {
         </div>
       </div>
 
-      <div className="mx-[auto]">
-        <div className="max-w-[33.75rem] gap-[0.5rem] text-center font-[Inter] text-[#18214D] text-[4.5rem] font-[600] leading-[5rem] ml-[23rem] mt-[4rem]">
-          <h1 className="font-[Inter] text-center leading-[5rem]">
+      <div className="mt-[2rem] items-center justify-center mx-[auto] md:mx-[auto] md:mt-[3rem] lg:mx-[auto]">
+        <div className="max-w-[24.75rem] w-[100%] items-center justify-center mx-[2rem] md:max-w-[33.75rem] md:w-[100%] lg:mx-[auto]">
+          <h1 className="font-[Inter] font-[600] text-center text-[#18214D] tracking-[ -0.15rem] text-[3.5rem] leading-[3.5rem] md:text-[4.3rem] md:font-[600] md:leading-[5rem] md:text-center md:ml-[-5rem] lg:text-[4.5rem] lg:text-center lg:mx-[auto]">
             Discover the world of code
           </h1>
         </div>
-        <div className="text-center w-[23.8125rem]  h-[5.5rem] ml-[27.5rem] mt-[0.5rem]">
-          <p className="font-[Inter] text-[1rem]">
+        <div className=" items-center justify-center max-w-[20.75rem] w-[100%] mx-[4rem] mt-[1.5rem] h-[5.25rem] lg:max-w-[27.8125rem] lg:w-[100%] lg:ml-[] lg:mx-[auto]">
+          <p className="text-[#000] font-[Inter] font-[600] leading-[1.75rem] tracking-[ -0.025rem] text-[1rem] text-center md:ml-[-1rem] lg:text-[#3E4462] lg:text-[1.25rem] lg:font-[Inter] lg:text-center">
             Explore open source projects from GitHub, and read their commit
             history to see the story of how they were built.
           </p>
         </div>
       </div>
 
-      <div className="bg-[#FFF]">
-        <div className=" flex gap-[1rem] ml-[12rem]">
-          <div className=" flex items-center bg-[#DFE4EA] max-w-[43.375rem] w-[100%] rounded-md">
-            <div className="ml-[1.01rem]">
+      <div className="mx-[2rem] md:mx-[auto] md:ml-[2rem]">
+        <div className=" flex flex-col items-ceneter justify-center gap-5 lg:flex-row  lg:max-w-[87.5rem] lg:w-[100%] lg:gap-2rem" >
+          <div className="mt-[4rem] max-w-[24.75rem] w-[100%] lg:max-w-[43.375rem] lg:w-[100%]">
+            <div className="absolute top-[15] mt-[1.1rem] ml-[1rem]">
               <SEARCH />
             </div>
-            <div className=" max-w-[43.375rem] h-[3.625rem] w-[100%]">
+
+            <div className="bg-[#DFE4EA] rounded-md py-[1rem] px-[1rem]
+            max-w-[24.75rem] w-[100%] h-[3.625rem] lg:max-w-[43.375rem] lg:w-[100%]">
               <input
                 type="text"
                 placeholder="Eg. facebook/react"
-                className="py-[0.94rem] bg-transparent font-[400] font-[Inter]"
-              />
+                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#DFE4EA] bg-[transparent] ml-[2rem]"/>
             </div>
           </div>
-          <button className="bg-[#F3663F] secondary text-[#FFF] font-[Inter] w-[13.125rem] rounded-md font-[600]">
-            <Link to="/viewCommit">See commits 🚀</Link>
+          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]">
+            <Link to="/viewCommit" className=" leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600] ">See commits 🚀</Link>
           </button>
         </div>
       </div>
 
-      <div className=" items-center justify-center mt-[1rem]">
-        <div className="">
-          <p className="text-center text-[#3E4462] font-[Inter] font-[400] text-[0.875rem] pb-[1rem] ml-[-0.5rem]">
+      <div className="flex flex-col items-center justify-center pb-[5rem]">
+        <div className="max-w-[11.25rem] w-[100%] mt-[2rem]">
+          <p className="font-[Inter] text-[ 0.875rem] text-[#3E4462] text-center font-[400] tracking-[-0.025rem]leading-[1.25rem]">
             Or pick one of these suggested repos
           </p>
         </div>
-        <div className="flex gap-[1rem] ml-[18.5rem] ">
-          <button className="text-center text-[#FFF] px-[1rem] bg-[#29335C] rounded-[0.5rem] h-[2.1875rem]">
-            <Link to="/django">django/django</Link>
+        
+        <div className="flex flex-col items-center justify-center gap-[1rem] mt-[2rem] lg:flex-row">
+          <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[8.75rem] h-[2.1875rem] rounded-md px-[1rem]">
+            <Link to="/django" >django/django</Link>
           </button>
-          <button className="bg-[#29335C] font-[Inter]  text-[#FFF]  px-[0.5rem] rounded-[0.5rem] h-[2.1875rem]">
+          <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[10.1875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
             <Link to="/viewLoading">microsoft/vscode</Link>
           </button>
-          <button className="text-[#FFF] bg-[#29335C] font-[Inter] rounded-[0.5rem] px-[0.5rem]  h-[2.1875rem]">
+          <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[9.75rem] h-[2.1875rem] w-[100%] rounded-md lg:px-[0.5rem]">
             <Link to="/jezen">jezen/is-thirteen</Link>
           </button>
-          <button className="text-[#FFF] bg-[#29335C] font-[Inter] rounded-[0.5rem] px-[0.5rem]  h-[2.1875rem]">
+          <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[11.875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
             <Link to="/benawad">benawad/dogehouse</Link>
           </button>
         </div>
@@ -83,4 +85,4 @@ const homePage = function App() {
   );
 };
 
-export default homePage;
+export default HomePage;
