@@ -10,15 +10,52 @@ const HomePage = function App() {
   
   // const [data, setData] = useState('');
 
-  //  useEffect(() => {
-  //   const [data, setData] = useState('')
+   useEffect(() => {
+    // const [data, setData] = useState('')
 
-  //   axios.get('https://api.github.com/')
-  //   .then(res=> setData(res.data))
-  //   .catch(err=> console.log(err))
-  //  }, [])
+    axios.get('https://api.github.com/repositories', {
+      params: {
+        sort: 'stars',
+        'order': 'desc'
+      }
+    })
+    .then(res=> console.log(res.data))
+    .catch(err=> console.log(err))
+   }, [])
 
-   
+   const GitHubRepos = () => {
+    const [repos, setRepos] = useState([]);
+  
+    useEffect(() => {
+      const fetchRepos = async () => {
+        try {
+          
+          const githubToken = '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';
+          const response = await axios.get(
+            'https://api.github.com/search/repositories',
+            {
+              params: {
+                q: 'stars:>0',
+                sort: 'stars',
+                order: 'desc',
+                per_page: 4,
+              },
+              headers: {
+                Authorization: `Bearer ${githubToken}`,
+              },
+            }
+          );
+  
+          setRepos(response.data.items);
+        } catch (error) {
+          console.error('Error fetching GitHub repositories:', error);
+        }
+      };
+  
+      fetchRepos();
+    }, []); 
+  }
+  
 
    
 
@@ -71,9 +108,16 @@ const HomePage = function App() {
                 className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#DFE4EA] bg-[transparent] ml-[2rem]"/>
             </div>
           </div>
+
+         
+
           <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]" onClick={ViewCommit}>
             <Link to="/view-commit" className=" leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600] ">See commits 🚀</Link>
+
+           
           </button>
+
+
         </div>
       </div>
 
