@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { SEARCH } from "../assets/IMAGES/img";
 import { Link } from "react-router-dom";
+import ViewCommit from "./viewCommit";
 
 const HomePage = function App() {
   return (
@@ -53,8 +54,8 @@ const HomePage = function App() {
                 className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#DFE4EA] bg-[transparent] ml-[2rem]"/>
             </div>
           </div>
-          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]">
-            <Link to="/viewCommit" className=" leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600] ">See commits 🚀</Link>
+          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]" onClick={ViewCommit}>
+            <Link to="/view-commit" className=" leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600] ">See commits 🚀</Link>
           </button>
         </div>
       </div>
@@ -68,16 +69,16 @@ const HomePage = function App() {
         
         <div className="flex flex-col items-center justify-center gap-[1rem] mt-[2rem] lg:flex-row">
           <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[8.75rem] h-[2.1875rem] rounded-md px-[1rem]">
-            <Link to="/django" >django/django</Link>
+            <Link to="/view-commit">django/django</Link>
           </button>
           <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[10.1875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
-            <Link to="/viewLoading">microsoft/vscode</Link>
+            <Link to="/view-commit">microsoft/vscode</Link>
           </button>
           <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[9.75rem] h-[2.1875rem] w-[100%] rounded-md lg:px-[0.5rem]">
-            <Link to="/jezen">jezen/is-thirteen</Link>
+            <Link to="/view-commit">jezen/is-thirteen</Link>
           </button>
           <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[11.875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
-            <Link to="/benawad">benawad/dogehouse</Link>
+            <Link to="/view-commit">benawad/dogehouse</Link>
           </button>
         </div>
       </div>
