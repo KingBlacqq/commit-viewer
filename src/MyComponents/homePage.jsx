@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { SEARCH } from "../assets/IMAGES/img";
 import { Link } from "react-router-dom";
 import ViewCommit from "./viewCommit";
+import axios from "axios";
+
 
 const HomePage = function App() {
+  
+  // const [data, setData] = useState('');
+
+  //  useEffect(() => {
+  //   const [data, setData] = useState('')
+
+  //   axios.get('https://api.github.com/')
+  //   .then(res=> setData(res.data))
+  //   .catch(err=> console.log(err))
+  //  }, [])
+
+   
+
+   
+
   return (
     <div className="max-w-[28.75rem] w-[100%] h-[56.25rem] mx-[auto] lg:max-w-[87.5rem] lg:w-[100%]">
       <div className="max-w-[28.75rem] w-[100%] mx-[auto] items-center justify-center md:max-w-[87.5rem]md:w-[100%] lg:max-w-[87.5rem] lg:w-[100%]">
