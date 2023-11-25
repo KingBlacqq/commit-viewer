@@ -7,8 +7,8 @@ const AllPages = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage/>} />
-      <Route path="/view-commit" element={<ViewCommit/>} />
-      <Route path="/view-commit/:viewcommitId" element={<ViewCommit/>} />
+      <Route path="/view-commit/:id" element={<ViewCommit/>} />
+      {/* <Route path="/view-commit/:viewcommitId" element={<ViewCommit/>} /> */}
     
     </Routes>
   );

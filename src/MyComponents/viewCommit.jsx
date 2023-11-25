@@ -5,14 +5,15 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const ViewCommit = () => {
+  
   const [data, setData] = useState(null);
-  const {viewcommitId} = useParams(); 
+  const {id} = useParams(); 
   
 
   useEffect(() => {
     const fetchData = async () => {
     try {
-      const response = await fetch(`/repositories/${viewcommitId}`);
+      const response = await fetch(`/repositories/${id}`);
       const jsonData = await Api.json(); 
       setData(jsonData);
     } catch (error) {
@@ -21,7 +22,10 @@ const ViewCommit = () => {
   };
   
   fetchData();
-  }, [4]);
+  }, []);
+
+
+
   
 
   return (

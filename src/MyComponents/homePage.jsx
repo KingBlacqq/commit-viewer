@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { SEARCH } from "../assets/IMAGES/img";
 import { Link } from "react-router-dom";
-import ViewCommit from "./viewCommit";
+// import ViewCommit from "./viewCommit";
 import Api from "../sevices/axios";
 import { useNavigate } from 'react-router-dom';
 
@@ -38,10 +38,6 @@ const HomePage = function App() {
     };
 
     const navigate = useNavigate();
-    const ButtonClick = () => {
-    
-      navigate('/view-commit');
-    };
 
   return (
     <div className="max-w-[28.75rem] w-[100%] h-[56.25rem] mx-[auto] lg:max-w-[87.5rem] lg:w-[100%]">
@@ -109,9 +105,13 @@ const HomePage = function App() {
         </div>
         
         <div className="flex flex-col items-center justify-center gap-[1rem] mt-[2rem] lg:flex-row">
-        {repos.slice(0,4).map((ViewCommit) => (
-          <button  key={ViewCommit.id} className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[8.75rem] h-[2.1875rem] rounded-md px-[1rem]" onClick={ButtonClick}>
-          {ViewCommit.name}
+        {
+          repos.slice(0,4).map((ViewCommit) => (
+          <button  
+            key={ViewCommit.id} className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] h-[2.1875rem] rounded-md px-[1rem]" 
+            onClick={() => navigate(`/view-commit/${ViewCommit?.id}`)}
+          >
+            {ViewCommit.full_name}
           </button>
               ))}
           
