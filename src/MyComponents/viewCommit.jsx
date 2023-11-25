@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { Ellipse, SEARCH } from "../assets/IMAGES/img";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const ViewCommit = () => {
+  const [data, setData] = useState(null);
+  const {viewcommitId} = useParams(); 
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+    try {
+      const response = await fetch(`/repositories/${viewcommitId}`);
+      const jsonData = await Api.json(); 
+      setData(jsonData);
+    } catch (error) {
+      console.error('Error fetching Data:', error);
+    }
+  };
+  
+  fetchData();
+  }, [4]);
+  
+
   return (
     <div className=" mx-[auto] xl:h-[48rem]">
       <div className="min-w-[28.75rem] w-[100%] h-[5.125rem] bg-[#DFE4EA] mx-[auto] md:bg-[#EFF2F6] md:h-[10rem] xl:h-[8.125rem]">

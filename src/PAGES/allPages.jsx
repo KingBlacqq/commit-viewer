@@ -8,6 +8,8 @@ const AllPages = () => {
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/view-commit" element={<ViewCommit/>} />
+      <Route path="/view-commit/:viewcommitId" element={<ViewCommit/>} />
+    
     </Routes>
   );
 };

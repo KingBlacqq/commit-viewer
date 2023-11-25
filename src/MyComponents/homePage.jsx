@@ -3,61 +3,45 @@ import ReactDOM from "react-dom/client";
 import { SEARCH } from "../assets/IMAGES/img";
 import { Link } from "react-router-dom";
 import ViewCommit from "./viewCommit";
-import axios from "axios";
+import Api from "../sevices/axios";
+import { useNavigate } from 'react-router-dom';
 
 
 const HomePage = function App() {
   
-  // const [data, setData] = useState('');
-
-   useEffect(() => {
-    // const [data, setData] = useState('')
-
-    axios.get('https://api.github.com/repositories', {
-      params: {
-        sort: 'stars',
-        'order': 'desc'
-      }
-    })
-    .then(res=> console.log(res.data))
-    .catch(err=> console.log(err))
-   }, [])
-
-   const GitHubRepos = () => {
-    const [repos, setRepos] = useState([]);
+    const [repos, setRepos] = useState([4]);
+    
   
     useEffect(() => {
-      const fetchRepos = async () => {
-        try {
-          
-          const githubToken = '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';
-          const response = await axios.get(
-            'https://api.github.com/search/repositories',
-            {
-              params: {
-                q: 'stars:>0',
-                sort: 'stars',
-                order: 'desc',
-                per_page: 4,
-              },
-              headers: {
-                Authorization: `Bearer ${githubToken}`,
-              },
-            }
-          );
-  
-          setRepos(response.data.items);
-        } catch (error) {
-          console.error('Error fetching GitHub repositories:', error);
-        }
-      };
-  
       fetchRepos();
-    }, []); 
-  }
-  
+    }, [4]); 
 
-   
+    const fetchRepos = async () => {
+      try {
+        const response = await Api.get('/repositories',
+          {
+            params: {
+              q: 'stars:>0',
+              sort: 'stars',
+              order: 'desc',
+              per_page: 4,
+            },
+
+          }
+          
+      );
+        setRepos(response.data.items);
+        console.log(response?.data?.items);
+      } catch (error) {
+        console.error('Error fetching GitHub repositories:', error);
+      }
+    };
+
+    const navigate = useNavigate();
+    const ButtonClick = () => {
+    
+      navigate('/view-commit');
+    };
 
   return (
     <div className="max-w-[28.75rem] w-[100%] h-[56.25rem] mx-[auto] lg:max-w-[87.5rem] lg:w-[100%]">
@@ -105,19 +89,15 @@ const HomePage = function App() {
               <input
                 type="text"
                 placeholder="Eg. facebook/react"
-                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#DFE4EA] bg-[transparent] ml-[2rem]"/>
+                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#000] bg-[transparent] ml-[2rem]"/>
             </div>
           </div>
 
          
 
-          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]" onClick={ViewCommit}>
+          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]">
             <Link to="/view-commit" className=" leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600] ">See commits 🚀</Link>
-
-           
           </button>
-
-
         </div>
       </div>
 
@@ -129,10 +109,14 @@ const HomePage = function App() {
         </div>
         
         <div className="flex flex-col items-center justify-center gap-[1rem] mt-[2rem] lg:flex-row">
-          <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[8.75rem] h-[2.1875rem] rounded-md px-[1rem]">
-            <Link to="/view-commit">django/django</Link>
+        {repos.slice(0,4).map((ViewCommit) => (
+          <button  key={ViewCommit.id} className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[8.75rem] h-[2.1875rem] rounded-md px-[1rem]" onClick={ButtonClick}>
+          {ViewCommit.name}
           </button>
-          <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[10.1875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
+              ))}
+          
+          {/* <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[10.1875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
+
             <Link to="/view-commit">microsoft/vscode</Link>
           </button>
           <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[9.75rem] h-[2.1875rem] w-[100%] rounded-md lg:px-[0.5rem]">
@@ -140,7 +124,7 @@ const HomePage = function App() {
           </button>
           <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[11.875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
             <Link to="/view-commit">benawad/dogehouse</Link>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
