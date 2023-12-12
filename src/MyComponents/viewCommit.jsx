@@ -1,40 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
+// import { useLocation } from "react-router-dom";
 import { Ellipse, SEARCH } from "../assets/IMAGES/img";
-import { Link, useParams } from "react-router-dom";
+// import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const ViewCommit = () => {
-  
-  const [data, setData] = useState(null);
-  const {id} = useParams(); 
-  
 
-  useEffect(() => {
-    const fetchData = async () => {
-    try {
-      const response = await fetch(`/repositories/${id}`);
-      const jsonData = await Api.json(); 
-      setData(jsonData);
-    } catch (error) {
-      console.error('Error fetching Data:', error);
-    }
-  };
-  
-  fetchData();
-  }, []);
-
-
-
-  
 
   return (
     <div className=" mx-[auto] xl:h-[48rem]">
       <div className="min-w-[28.75rem] w-[100%] h-[5.125rem] bg-[#DFE4EA] mx-[auto] md:bg-[#EFF2F6] md:h-[10rem] xl:h-[8.125rem]">
+         
         <div className="md:max-w-[87rem] md:w-[100%] md:flex md:flex-col lg:flex-row lg:pt-[3rem] xl:gap-0 xl:ml-[-12rem]">
-          <h1 className="min-[400px]:mx-[auto] font-[Inter] font-[700] text-[#18214D] text-[1.75rem] tracking-[-0.0375rem] text-center mx-[auto] pt-[1.5rem] lg:ml-[3rem]  xl:mx-[auto] xl:mt-[-2rem] xl:pl-[25rem]">
+          <h1 className="min-[400px]:mx-[auto] font-[Inter] font-[700] text-[#18214D] text-[1.75rem] tracking-[-0.0375rem] text-center mx-[auto] pt-[1.5rem] lg:ml-[3rem]  xl:mx-[auto] xl:mt-[-2rem] xl:pl-[20rem]">
             CommitViewer
           </h1>
+          {/* <h2>{items}</h2> */}
 
           <div className="hidden md:flex md:flex-row md:gap-2 md:mx-[auto] md:mt-[1rem] xl:mt-[-1rem] ">
             <div className="md:absolute md:top-[6.1rem] md:ml-[0.9rem] lg:top-[5rem] xl:top-[3rem]">

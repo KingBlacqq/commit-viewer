@@ -10,15 +10,15 @@ import { useNavigate } from 'react-router-dom';
 const HomePage = function App() {
   
     const [repos, setRepos] = useState([4]);
-    
+    const [repoInput, setRepoInput] = useState([]);
   
     useEffect(() => {
       fetchRepos();
-    }, [4]); 
+    }, []); 
 
     const fetchRepos = async () => {
       try {
-        const response = await Api.get('/repositories',
+        const response = await Api.get('/repositories', 
           {
             params: {
               q: 'stars:>0',
@@ -36,6 +36,29 @@ const HomePage = function App() {
         console.error('Error fetching GitHub repositories:', error);
       }
     };
+
+    const handleInputChange = (e) =>{
+      setRepoInput(e.target.value)
+    }
+
+    // const handleSearchCommits = async() => {
+    //   try{
+    //     const response = await Api.get('https://api.github.com/search/repositories?q=language:javaScript+sort:stars&per_page=4')
+    //     setCommits(response.data.items);
+    //   }
+    //   catch(err){
+    //     console.log(err)
+    //   }
+    // }
+  
+    // useEffect(() => {
+    //   handleSearchCommits();
+    // }, [])
+
+    // const handleChange = (e) => {
+    //   setRepos(e.target.value)
+    // }
+  
 
     const navigate = useNavigate();
 
@@ -55,6 +78,7 @@ const HomePage = function App() {
                 <a href="#">Contact</a>
               </li>
             </ul>
+            
           </div>
         </div>
       </div>
@@ -77,22 +101,23 @@ const HomePage = function App() {
         <div className=" flex flex-col items-center justify-center gap-0.5 lg:flex-row  lg:max-w-[87.5rem] lg:w-[100%] lg:gap-2rem" >
           <div className="mt-[4rem] max-w-[24.75rem] w-[100%] lg:max-w-[43.375rem] lg:w-[100%]">
             <div className="absolute top-[15] mt-[1.1rem] ml-[1rem]">
-              <SEARCH />
+              <SEARCH onClick={fetchRepos}/>
             </div>
 
             <div className="bg-[#DFE4EA] rounded-md py-[1rem] px-[1rem]
             max-w-[24.75rem] w-[100%] h-[3.625rem] lg:max-w-[43.375rem] lg:w-[100%]">
               <input
                 type="text"
+                value={repoInput}
                 placeholder="Eg. facebook/react"
-                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#000] bg-[transparent] ml-[2rem]"/>
+                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#000] bg-[transparent] ml-[2rem]" onChange={handleInputChange} />
             </div>
           </div>
 
          
 
-          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem]">
-            <Link to="/view-commit" className=" leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600] ">See commits 🚀</Link>
+          <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem] leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600]" onClick={fetchRepos}>
+            See commits 🚀
           </button>
         </div>
       </div>
@@ -109,7 +134,7 @@ const HomePage = function App() {
           repos.slice(0,4).map((ViewCommit) => (
           <button  
             key={ViewCommit.id} className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] h-[2.1875rem] rounded-md px-[1rem]" 
-            onClick={() => navigate(`/view-commit/${ViewCommit?.id}`)}
+            onClick={() => navigate(`/view-commit/${ViewCommit?.full_name}`)}
           >
             {ViewCommit.full_name}
           </button>
