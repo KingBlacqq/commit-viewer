@@ -6,6 +6,28 @@ import { Ellipse, SEARCH } from "../assets/IMAGES/img";
 import { useEffect } from "react";
 
 const ViewCommit = () => {
+ const [viewCommit, setViewCommit] = useState()
+ const ViewCommit = async () => {
+  try {
+    const response = await Api.get('https://api.github.com/users/airbnb/repos', 
+      {
+        params: {
+          q: 'stars:>0',
+          sort: 'stars',
+          order: 'desc',
+          per_page: 4,
+        },
+
+      }
+  
+  );
+  setRepos(response.data.items);
+        console.log(response?.data?.items);
+
+      } catch (error) {
+        console.error('Error fetching GitHub repositories:', error);
+      }
+    };
 
 
   return (
@@ -30,7 +52,7 @@ const ViewCommit = () => {
               />
             </div>
             <button className="md:bg-[#F3663F] md:font-[600] md:font-[Inter] md:text-[#FFF] md:text-[1rem] md:text-[center] md:w-[10.375rem] md:rounded-md md:h-[3.625rem] xl:text-[1.25rem] xl:max-w-[12.375rem] xl:w-[100%]">
-              <a href>See Commit 🚀</a>
+              <a href onClick={fetchrepos}>See Commit 🚀</a>
             </button>
           </div>
         </div>

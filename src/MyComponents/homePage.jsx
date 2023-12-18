@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import ViewCommit from "./viewCommit";
 import Api from "../sevices/axios";
 import { useNavigate } from 'react-router-dom';
+import ViewCommit from "./viewCommit";
 
 
 const HomePage = function App() {
@@ -28,18 +29,21 @@ const HomePage = function App() {
             },
 
           }
-          
+      
       );
         setRepos(response.data.items);
         console.log(response?.data?.items);
+
       } catch (error) {
         console.error('Error fetching GitHub repositories:', error);
       }
     };
 
-    const handleInputChange = (e) =>{
-      setRepoInput(e.target.value)
+    const handleInputChange = (value) =>{
+      setRepoInput(value);
+      fetchRepos(value);
     }
+
 
     // const handleSearchCommits = async() => {
     //   try{
@@ -106,19 +110,23 @@ const HomePage = function App() {
 
             <div className="bg-[#DFE4EA] rounded-md py-[1rem] px-[1rem]
             max-w-[24.75rem] w-[100%] h-[3.625rem] lg:max-w-[43.375rem] lg:w-[100%]">
+              
+       
               <input
                 type="text"
                 value={repoInput}
-                placeholder="Eg. facebook/react"
-                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#000] bg-[transparent] ml-[2rem]" onChange={handleInputChange} />
+                placeholder="Eg. facebook/react" 
+                className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#29335C] bg-[transparent] ml-[2rem] h-[100%] border-[none] focus:outline-none font-[500]" onChange={(e) => handleInputChange(e.target.value)} />
+               
             </div>
           </div>
 
-         
+          
 
           <button className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem] leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600]" onClick={fetchRepos}>
             See commits 🚀
           </button>
+         
         </div>
       </div>
 
