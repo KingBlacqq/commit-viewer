@@ -105,7 +105,7 @@ const HomePage = function App() {
         <div className=" flex flex-col items-center justify-center gap-0.5 lg:flex-row  lg:max-w-[87.5rem] lg:w-[100%] lg:gap-2rem" >
           <div className="mt-[4rem] max-w-[24.75rem] w-[100%] lg:max-w-[43.375rem] lg:w-[100%]">
             <div className="absolute top-[15] mt-[1.1rem] ml-[1rem]">
-              <SEARCH onClick={fetchRepos}/>
+              <SEARCH />
             </div>
 
             <div className="bg-[#DFE4EA] rounded-md py-[1rem] px-[1rem]
