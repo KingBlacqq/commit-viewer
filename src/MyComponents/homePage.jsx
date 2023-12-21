@@ -139,7 +139,16 @@ const HomePage = function App() {
         
         <div className="flex flex-col items-center justify-center gap-[1rem] mt-[2rem] lg:flex-row">
         {
-          repos.slice(0,4).map((ViewCommit) => (
+          repos
+          // .filter((item)=>{
+          //   if(repoInput===""){
+          //     return item;
+          //   }
+          //   else if(item.name.toLowerCase().includes(repoInput.toLowerCase())){
+          //     return item;
+          //   }
+          // })
+          .slice(0,4).map((ViewCommit) => (
           <button  
             key={ViewCommit.id} className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] h-[2.1875rem] rounded-md px-[1rem]" 
             onClick={() => navigate(`/view-commit/${ViewCommit?.full_name}`)}
