@@ -8,9 +8,12 @@ import { useNavigate } from "react-router-dom";
 import ViewCommit from "./viewCommit";
 
 const HomePage = function App() {
-
   const [repos, setRepos] = useState([4]);
   const [repoInput, setRepoInput] = useState([]);
+  const [query, setQuery] = useState("");
+  const [repo, setRepo] = useState("");
+  const [loading, setLoading] = useState("false");
+  // const [searchParam] = useState(["capital", "name"]);
 
   useEffect(() => {
     fetchRepos();
@@ -18,29 +21,39 @@ const HomePage = function App() {
 
   const fetchRepos = async () => {
     try {
-      const response = await Api.get("/search/repositories?q=v+sort:stars&per_page=5", {
-        params: {
-          q: "stars:>0",
-          sort: "stars",
-          order: "desc",
-          per_page: 4,
-        },
-      });
+      const response = await Api.get(
+        "/search/repositories?q=language:javascript&sort=stars&order=desc&per_page=5"
+      );
       setRepos(response.data.items);
       console.log(response?.data);
-      localStorage.setItem("repos",JSON.stringify(response.data))
+      localStorage.setItem("repos", JSON.stringify(response.data));
     } catch (error) {
       console.error("Error fetching GitHub repositories:", error);
     }
   };
 
+  const searchRepos = async (value) => {
+    try {
+      const response = await Api.get(`/search/repositories?q=${value}`);
+      setRepo(response.data.items);
+      localStorage.setItem("repo", JSON.stringify(response.data));
+      setLoading(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    if (repo !== '') {
+    searchRepos();
+    }
+  }, [repo]);
 
   const handleInputChange = (value) => {
     setRepoInput(value);
     fetchRepos(value);
   };
-
-  
 
   const navigate = useNavigate();
 
@@ -93,20 +106,34 @@ const HomePage = function App() {
             >
               <input
                 type="text"
-                value={repoInput}
+                id="search-form"
+                value={query}
                 placeholder="Eg. facebook/react"
                 className="font-[Inter] text-[1.25rem] font-[400] leading-[ 1.75rem] tracking-[-0.03125rem] text-[#29335C] bg-[transparent] ml-[2rem] h-[100%] border-[none] focus:outline-none font-[500]"
-                onChange={(e) => handleInputChange(e.target.value)}
+                onChange={(e) => setQuery(e.target.value)}
               />
             </div>
           </div>
 
           <button
             className="max-w-[24.75rem] w-[100%] h-[3.75rem] bg-[#F3663F] rounded-md mt-[2.59rem] lg:w-[20%] lg:mt-[3.85rem] leading-[-0.03125rem font-[Inter] text-[1.25rem] text-center text-[#FFF] font-[600]"
-            onClick={fetchRepos}
+            onClick={() => searchRepos("react")}
           >
             See commits 🚀
           </button>
+
+          { repo?.length > 0 && repo?.map((ViewCommit) => (
+          <button 
+           disabled={!repo || loading}
+                key={ViewCommit.id}
+                className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600]  rounded-md px-[1rem] py-[1rem]"
+                onClick={() =>
+                  navigate(`/view-commit/${ViewCommit?.full_name}`)
+                }
+              >
+                {ViewCommit.full_name}
+              </button>
+              ))}
         </div>
       </div>
 
@@ -118,18 +145,35 @@ const HomePage = function App() {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-[1rem] mt-[2rem] lg:flex-row">
-          {repos?.slice(0, 4).map((ViewCommit) => (
-              
-              <button
-                key={ViewCommit.id}
-                className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] h-[2.1875rem] rounded-md px-[1rem]"
-                onClick={() =>
-                  navigate(`/view-commit/${ViewCommit?.full_name}`)
-                }
-              >
-                {ViewCommit.full_name}
-              </button>
-            ))}
+          {repos?.slice(0, 5).map((ViewCommit) => (
+            <button
+              key={ViewCommit.id}
+              className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600]  rounded-md px-[1rem] py-[1rem]"
+              onClick={() => navigate(`/view-commit/${ViewCommit?.full_name}`)}
+            >
+              {ViewCommit.full_name}
+              {loading ? (
+                ViewCommit.full_name
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentFill"
+                  />
+                </svg>
+              )}
+            </button>
+          ))}
 
           {/* <button className="font-[Inter] text-[#FFFFFF] bg-[#29335C] text-[1rem] font-[600] max-w-[10.1875rem] h-[2.1875rem] w-[100%] px-[1rem] rounded-md">
 
